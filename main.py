@@ -67,10 +67,10 @@ def _str(v):
         str
     '''
     if isinstance(v, bool):
-            return 'true' if v else 'false'
+        return 'true' if v else 'false'
 
     if isinstance(v, float):
-            return str(int(v)) if v % 1 == 0 else str(v)
+        return str(int(v)) if v % 1 == 0 else str(v)
 
     return str(v)
 
