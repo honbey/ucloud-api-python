@@ -22,17 +22,15 @@ PRIVATE_KEY = os.getenv('UCLOUD_PRIVATE_KEY')
 
 
 def to_str(k: str, v: any) -> str:
-    '''K-V data must be concatenated and sorted by ascent alphabet.
+    """K-V data must be concatenated and sorted by ascent alphabet
 
-    :param str k:
-        key
-    :param v:
-        value
-    :return:
-        concatenated string contains K and V
-    :rtype:
-        str
-    '''
+    :param k: key
+    :type k: str
+    :param v: value
+    :type v: any
+    :return: concatenated string contains K and V
+    :rtype: str
+    """
     if isinstance(v, list):
         s = ''
         for i in v:
@@ -53,19 +51,16 @@ def to_str(k: str, v: any) -> str:
         return k + _str(v)
 
 
-def _str(v):
-    '''Converting value to correct string.
-
+def _str(v: any) -> str:
+    """Converting value to correct string
     Boolean must be `true` or `false`, float must convert to 
     integer which can completely divide 1.
 
-    :param v:
-        value
-    :return:
-        converted string
-    :rtype:
-        str
-    '''
+    :param v: value
+    :type v: any
+    :return: converted string
+    :rtype: str
+    """
     if isinstance(v, bool):
         return 'true' if v else 'false'
 
@@ -76,17 +71,15 @@ def _str(v):
 
 
 def calc_sign(d: dict, k: str) -> str:
-    '''Calculating signature of final concatenated string.
+    """Calculating signature of final concatenated string
 
-    :param dict d:
-        data required by API except signature
-    :param str k:
-        private key
-    :return:
-        signature of request
-    :rtype:
-        str
-    '''
+    :param d:data required by API except signature
+    :type d: dict
+    :param k: private key
+    :type k: str
+    :return: signature of request
+    :rtype: str
+    """
     return hashlib.sha1((to_str('', d) + k).encode('utf-8')).hexdigest()
 
 
